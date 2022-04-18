@@ -187,7 +187,7 @@ const LanguageSwitcher = (props) => {
       {/*</Menu>*/}
       <Link href={'https://demo.sling.biz'}>
         <Button className={classes.dashboardBtn} color='yellow'>
-          Dashboard
+          Studio
         </Button>
       </Link>
     </Box>
