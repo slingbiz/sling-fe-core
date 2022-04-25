@@ -27,6 +27,8 @@ var _Button = _interopRequireDefault(require("@material-ui/core/Button"));
 
 var _link = _interopRequireDefault(require("next/link"));
 
+var _data = _interopRequireDefault(require("./data"));
+
 var _jsxRuntime = require("react/jsx-runtime");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -171,8 +173,8 @@ var LanguageSwitcher = function LanguageSwitcher(props) {
       "aria-haspopup": "true",
       onClick: onClickMenu,
       color: "inherit",
-      children: !iconOnly ? /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
-        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"], {
+      children: !iconOnly ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_jsxRuntime.Fragment, {
+        children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"], {
           component: "span",
           mr: {
             xs: 2,
@@ -188,25 +190,52 @@ var LanguageSwitcher = function LanguageSwitcher(props) {
           children: /*#__PURE__*/(0, _jsxRuntime.jsx)("i", {
             className: "flag flag-24 flag-".concat(locale.icon)
           })
-        }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"], {
-          component: "span",
-          fontSize: 16,
-          fontFamily: "Poppins",
-          fontWeight: _AppEnums.Fonts.REGULAR,
-          display: "inline-block",
-          children: locale.name
-        })]
+        })
       }) : /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"], {
         children: /*#__PURE__*/(0, _jsxRuntime.jsx)("i", {
           className: "flag flag-24 flag-".concat(locale.icon)
         })
       })
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(Menu, {
+      anchorEl: anchorElLng,
+      id: "language-switcher",
+      keepMounted: true,
+      open: Boolean(anchorElLng),
+      onClose: function onClose() {
+        return setAnchorElLng(null);
+      },
+      children: _data["default"].map(function (language, index) {
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_core.MenuItem, {
+          onClick: function onClick() {
+            return changeLanguage(language);
+          },
+          children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_Box["default"], {
+            width: 160,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("i", {
+              className: "flag flag-24 flag-".concat(language.icon)
+            }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"], {
+              component: "h4",
+              ml: 4,
+              mb: 0,
+              fontSize: {
+                xs: 14,
+                xl: 16
+              },
+              fontWeight: _AppEnums.Fonts.MEDIUM,
+              children: language.name
+            })]
+          })
+        }, index);
+      })
     }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_link["default"], {
-      href: 'https://demo.sling.biz',
+      href: 'https://studio.sling.biz',
       children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Button["default"], {
         className: classes.dashboardBtn,
         color: "yellow",
-        children: "Dashboard"
+        children: "Studio"
       })
     })]
   });
