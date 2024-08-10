@@ -3,12 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = exports.ThemeStyleRadius = exports.ThemeStyle = exports.ThemeMode = exports.RouteTransition = exports.NavStyle = exports.LayoutType = exports.HeaderType = exports.FooterType = exports.Fonts = exports.AuthType = void 0;
+exports["default"] = exports.ThemeStyleRadius = exports.ThemeStyle = exports.ThemeMode = exports.RouteTransition = exports.NavStyle = exports.LayoutType = exports.HeaderType = exports.FooterType = exports.Fonts = exports.AuthType = exports.ApiConfig = void 0;
 var ThemeStyle = {
   MODERN: 'modern',
   STANDARD: 'standard'
 };
 exports.ThemeStyle = ThemeStyle;
+var ApiConfig = {
+  GET_INIT_PROPS: 'https://api.sling.biz/v1/frontend/getInitProps'
+};
+exports.ApiConfig = ApiConfig;
 var ThemeStyleRadius = {
   MODERN: 30,
   STANDARD: 4
@@ -83,6 +87,7 @@ var _default = {
   LayoutType: LayoutType,
   ThemeMode: ThemeMode,
   ThemeStyleRadius: ThemeStyleRadius,
-  ThemeStyle: ThemeStyle
+  ThemeStyle: ThemeStyle,
+  ApiConfig: ApiConfig
 };
 exports["default"] = _default;

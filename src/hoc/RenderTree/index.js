@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import Wrappers from '../../wrappers/index';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-
+import { getAllWidgets } from '../../utility/WidgetRegistry';   
 
 const RenderTree = (props) => {
     const {ComponentBlocks, Widgets, Blocks} = props;
     const NodeTypeMap = {
         componentBlock: ComponentBlocks,
-        widget: Widgets,
+        widget: getAllWidgets(),
         block: Blocks,
     };
 

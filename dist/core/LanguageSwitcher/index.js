@@ -196,7 +196,7 @@ var LanguageSwitcher = function LanguageSwitcher(props) {
           className: "flag flag-24 flag-".concat(locale.icon)
         })
       })
-    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(Menu, {
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_core.Menu, {
       anchorEl: anchorElLng,
       id: "language-switcher",
       keepMounted: true,

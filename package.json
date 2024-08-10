@@ -1,6 +1,6 @@
 {
   "name": "sling-fe-core",
-  "version": "1.2.6",
+  "version": "1.4.2",
   "description": "Frontend Client Core ",
   "scripts": {
     "build": "babel src -d dist",

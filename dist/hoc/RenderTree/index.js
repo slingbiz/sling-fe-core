@@ -33,6 +33,7 @@ var RenderTree = function RenderTree(props) {
       Blocks = props.Blocks;
   var NodeTypeMap = {
     componentBlock: ComponentBlocks,
+    component: ComponentBlocks,
     widget: Widgets,
     block: Blocks
   };
@@ -45,101 +46,98 @@ var RenderTree = function RenderTree(props) {
     rows === null || rows === void 0 ? void 0 : rows.map(function (_ref) {
       var cells = _ref.cells,
           config = _ref.config;
+      var Wrapper = config !== null && config !== void 0 && config.wrapper ? _index["default"][config.wrapper] : _index["default"]['DefaultContent'];
 
-      if (config !== null && config !== void 0 && config.wrapper) {
-        var Wrapper = _index["default"][config.wrapper];
+      if (Wrapper) {
+        tmpElements.push( /*#__PURE__*/(0, _jsxRuntime.jsx)(Wrapper, {
+          children: cells === null || cells === void 0 ? void 0 : cells.map(function (cell) {
+            var rows = cell.rows,
+                key = cell.key,
+                payload = cell.payload,
+                type = cell.type;
+            var style = payload.style,
+                muiWidths = payload.muiWidths,
+                widgetProps = payload.props,
+                muiHidden = payload.muiHidden;
 
-        if (Wrapper) {
-          tmpElements.push( /*#__PURE__*/(0, _jsxRuntime.jsx)(Wrapper, {
-            children: cells === null || cells === void 0 ? void 0 : cells.map(function (cell) {
-              var rows = cell.rows,
-                  key = cell.key,
-                  payload = cell.payload,
-                  type = cell.type;
-              var style = payload.style,
-                  muiWidths = payload.muiWidths,
-                  widgetProps = payload.props,
-                  muiHidden = payload.muiHidden;
+            if (key) {
+              var CellComponent = Blocks[key];
 
-              if (key) {
-                var CellComponent = Blocks[key];
-
-                if (type) {
-                  CellComponent = NodeTypeMap[type][key];
-                }
-
-                if (CellComponent) {
-                  if (muiHidden) {
-                    console.log('[muiHidden]', muiHidden, key);
-                    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Hidden["default"], _objectSpread(_objectSpread({}, muiHidden), {}, {
-                      children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Grid["default"], _objectSpread(_objectSpread({
-                        item: true,
-                        display: 'flex',
-                        flex: 1
-                      }, muiWidths), {}, {
-                        children: /*#__PURE__*/(0, _jsxRuntime.jsx)(CellComponent, {
-                          parentProps: props,
-                          widgetProps: widgetProps,
-                          payload: payload
-                        }, key)
-                      }))
-                    }));
-                  }
-
-                  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Grid["default"], _objectSpread(_objectSpread({
-                    item: true,
-                    display: 'flex',
-                    flex: 1
-                  }, muiWidths), {}, {
-                    children: /*#__PURE__*/(0, _jsxRuntime.jsx)(CellComponent, {
-                      parentProps: props,
-                      widgetProps: widgetProps,
-                      payload: payload
-                    }, key)
-                  }));
-                }
+              if (type) {
+                CellComponent = NodeTypeMap[type][key];
               }
 
-              if (rows) {
+              if (CellComponent) {
                 if (muiHidden) {
+                  console.log('[muiHidden]', muiHidden, key);
                   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Hidden["default"], _objectSpread(_objectSpread({}, muiHidden), {}, {
                     children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Grid["default"], _objectSpread(_objectSpread({
-                      item: true
-                    }, muiWidths), {}, {
+                      item: true,
                       display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"] // container
-                      , {
-                        spacing: 2,
-                        justifyContent: 'center',
-                        width: 'auto',
-                        children: processRows(rows)
-                      })
+                      flex: 1
+                    }, muiWidths), {}, {
+                      children: /*#__PURE__*/(0, _jsxRuntime.jsx)(CellComponent, {
+                        parentProps: props,
+                        widgetProps: widgetProps,
+                        payload: payload
+                      }, key)
                     }))
                   }));
                 }
 
                 return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Grid["default"], _objectSpread(_objectSpread({
-                  item: true
-                }, muiWidths), {}, {
+                  item: true,
                   display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"] // container
-                  , {
-                    spacing: 2,
-                    justifyContent: 'center',
-                    width: 'auto',
-                    children: processRows(rows)
-                  })
+                  flex: 1
+                }, muiWidths), {}, {
+                  children: /*#__PURE__*/(0, _jsxRuntime.jsx)(CellComponent, {
+                    parentProps: props,
+                    widgetProps: widgetProps,
+                    payload: payload
+                  }, key)
                 }));
               }
-            })
-          }));
-        }
+            }
+
+            if (rows) {
+              if (muiHidden) {
+                return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Hidden["default"], _objectSpread(_objectSpread({}, muiHidden), {}, {
+                  children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Grid["default"], _objectSpread(_objectSpread({
+                    item: true
+                  }, muiWidths), {}, {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"] // container
+                    , {
+                      spacing: 2,
+                      justifyContent: 'center',
+                      width: 'auto',
+                      children: processRows(rows)
+                    })
+                  }))
+                }));
+              }
+
+              return /*#__PURE__*/(0, _jsxRuntime.jsx)(_Grid["default"], _objectSpread(_objectSpread({
+                item: true
+              }, muiWidths), {}, {
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Box["default"] // container
+                , {
+                  spacing: 2,
+                  justifyContent: 'center',
+                  width: 'auto',
+                  children: processRows(rows)
+                })
+              }));
+            }
+          })
+        }));
       }
     });
     return tmpElements;
